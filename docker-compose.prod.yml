@@ -1,0 +1,12 @@
+services:
+  api:
+    container_name: securetap_api_${ENV}
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - '${SERVER_PORT}:${SERVER_PORT}'
+    image: securetap_api_${ENV}
+    restart: always
+    env_file:
+      - .env.${ENV}

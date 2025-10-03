@@ -1,0 +1,15 @@
+services:
+  api:
+    container_name: securetap_api_${ENV}
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '${SERVER_PORT}:${SERVER_PORT}'
+    image: securetap_api_${ENV}
+    restart: always
+    env_file:
+      - .env.${ENV}
