@@ -29,7 +29,7 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
         {
           timeZone: 'America/Lima',
         },
-      )}}`,
+      )}`,
     );
   }
 
