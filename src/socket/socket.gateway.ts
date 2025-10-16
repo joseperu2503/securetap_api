@@ -16,13 +16,13 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   handleConnection(client: Socket) {
     console.log(
-      `Cliente conectado: ${client.id} | ${Date.now().toLocaleString()}`,
+      `Cliente conectado: ${client.id} | ${new Date().toLocaleString()}}`,
     );
   }
 
   handleDisconnect(client: Socket) {
     console.log(
-      `Cliente desconectado: ${client.id} | ${Date.now().toLocaleString()}`,
+      `Cliente desconectado: ${client.id} | ${new Date().toLocaleString()}}`,
     );
   }
 
@@ -45,7 +45,7 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
       data: body.data,
     });
     console.log(
-      `Alarma ENCENDIDA en sala ${body.room} | ${Date.now().toLocaleString()}`,
+      `Alarma ENCENDIDA en sala ${body.room} | ${new Date().toLocaleString()}}`,
     );
   }
 
