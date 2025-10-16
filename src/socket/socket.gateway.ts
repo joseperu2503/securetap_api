@@ -33,26 +33,26 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
   // Encender la alarma
   @SubscribeMessage('turnOnAlert')
   handleTurnOnAlert(
-    @MessageBody() data: { room: string; message?: string },
+    @MessageBody() body: { room: string; data: any },
     @ConnectedSocket() client: Socket,
   ) {
-    this.server.to(data.room).emit('alertOn', {
+    this.server.to(body.room).emit('alertOn', {
       from: client.id,
-      message: data.message ?? '🚨 Alarma encendida',
+      data: body.data,
     });
-    console.log(`Alarma ENCENDIDA en sala ${data.room}`);
+    console.log(`Alarma ENCENDIDA en sala ${body.room}`);
   }
 
   // Apagar la alarma
   @SubscribeMessage('turnOffAlert')
   handleTurnOffAlert(
-    @MessageBody() data: { room: string; message?: string },
+    @MessageBody() body: { room: string; data: any },
     @ConnectedSocket() client: Socket,
   ) {
-    this.server.to(data.room).emit('alertOff', {
+    this.server.to(body.room).emit('alertOff', {
       from: client.id,
-      message: data.message ?? '✅ Alarma apagada',
+      data: body.data,
     });
-    console.log(`Alarma APAGADA en sala ${data.room}`);
+    console.log(`Alarma APAGADA en sala ${body.room}`);
   }
 }
