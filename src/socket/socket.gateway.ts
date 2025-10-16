@@ -15,11 +15,11 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
   server: Server;
 
   handleConnection(client: Socket) {
-    console.log(`Cliente conectado: ${client.id}`);
+    console.log(`Cliente conectado: ${client.id} | ${Date.now()}`);
   }
 
   handleDisconnect(client: Socket) {
-    console.log(`Cliente desconectado: ${client.id}`);
+    console.log(`Cliente desconectado: ${client.id} | ${Date.now()}`);
   }
 
   // Unirse a un room
@@ -40,7 +40,7 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
       from: client.id,
       data: body.data,
     });
-    console.log(`Alarma ENCENDIDA en sala ${body.room}`);
+    console.log(`Alarma ENCENDIDA en sala ${body.room} | ${Date.now()}`);
   }
 
   // Apagar la alarma
@@ -54,5 +54,10 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
       data: body.data,
     });
     console.log(`Alarma APAGADA en sala ${body.room}`);
+  }
+
+  @SubscribeMessage('ping')
+  handlePing(@ConnectedSocket() client: Socket) {
+    client.emit('pong');
   }
 }
