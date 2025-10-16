@@ -35,10 +35,16 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   // Unirse a un room
   @SubscribeMessage('joinRoom')
-  handleJoinRoom(client: Socket, payload: { room: string }) {
-    client.join(payload.room);
-    client.emit('joinedRoom', { room: payload.room });
-    console.log(`Cliente ${client.id} se unió a la sala ${payload.room}`);
+  handleJoinRoom(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() body: { room: string; data: any },
+  ) {
+    client.join(body.room);
+    client.emit('joinedRoom', { room: body.room });
+
+    console.log(
+      `Cliente ${client.id} (${body.data.name}) se unió a la sala ${body.room}`,
+    );
   }
 
   // Encender la alarma
