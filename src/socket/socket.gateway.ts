@@ -15,11 +15,15 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
   server: Server;
 
   handleConnection(client: Socket) {
-    console.log(`Cliente conectado: ${client.id} | ${Date.now()}`);
+    console.log(
+      `Cliente conectado: ${client.id} | ${Date.now().toLocaleString()}`,
+    );
   }
 
   handleDisconnect(client: Socket) {
-    console.log(`Cliente desconectado: ${client.id} | ${Date.now()}`);
+    console.log(
+      `Cliente desconectado: ${client.id} | ${Date.now().toLocaleString()}`,
+    );
   }
 
   // Unirse a un room
@@ -40,7 +44,9 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
       from: client.id,
       data: body.data,
     });
-    console.log(`Alarma ENCENDIDA en sala ${body.room} | ${Date.now()}`);
+    console.log(
+      `Alarma ENCENDIDA en sala ${body.room} | ${Date.now().toLocaleString()}`,
+    );
   }
 
   // Apagar la alarma
