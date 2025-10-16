@@ -43,7 +43,7 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
     client.emit('joinedRoom', { room: body.room });
 
     console.log(
-      `Cliente ${client.id} (${body.data.name}) se unió a la sala ${body.room}`,
+      `Cliente ${client.id} (${body.data?.name}) se unió a la sala ${body.room}`,
     );
   }
 
