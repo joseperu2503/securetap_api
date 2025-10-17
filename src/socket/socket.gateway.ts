@@ -57,14 +57,7 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
       from: client.id,
       data: body.data,
     });
-    console.log(
-      `Alarma ENCENDIDA en sala ${body.room} | ${new Date().toLocaleString(
-        'es-PE',
-        {
-          timeZone: 'America/Lima',
-        },
-      )}}`,
-    );
+    console.log(`Alarma ENCENDIDA en sala ${body.room}`);
   }
 
   // Apagar la alarma
